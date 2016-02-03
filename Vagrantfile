@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 6543, host: 6543
+  config.vm.forward_port 5432, 15434
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -83,4 +84,5 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, :path => "vagrant/bootstrap.sh"
   config.vm.provision :shell, :path => "vagrant/provision-instantclient.sh"
+  config.vm.provision :shell, :path => "vagrant/bootstrap-pg.sh"
 end
